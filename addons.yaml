@@ -11,7 +11,7 @@ microk8s-addons:
 
     - name: "istio"
       description: "Core Istio service mesh services"
-      version: "1.14.4"
+      version: "1.15.3"
       check_status: "${SNAP_DATA}/bin/istioctl"
       supported_architectures:
         - amd64
@@ -51,11 +51,12 @@ microk8s-addons:
 
     - name: "cilium"
       description: "SDN, fast with full network policy"
-      version: "1.10"
+      version: "1.11.12"
       check_status: "pod/cilium"
       confinement: "classic"
       supported_architectures:
         - amd64
+        - arm64
 
     - name: "multus"
       description: "Multus CNI enables attaching multiple network interfaces to pods"
@@ -83,12 +84,13 @@ microk8s-addons:
         - amd64
 
     - name: "traefik"
-      description: "traefik Ingress controller for external access"
-      version: "2.5.0"
-      check_status: "pod/traefik"
+      description: "traefik Ingress controller"
+      version: "2.9.6"
+      check_status: "deployment.apps/traefik"
       supported_architectures:
         - arm64
         - amd64
+        - s390x
 
     - name: "keda"
       description: "Kubernetes-based Event Driven Autoscaling"
@@ -156,3 +158,51 @@ microk8s-addons:
       check_status: "deployment.apps/sosivio-dashboard"
       supported_architectures:
         - amd64
+
+    - name: "kwasm"
+      description: "WebAssembly support for WasmEdge (Docker Wasm) and Spin (Azure AKS WASI)"
+      version: "0.2.0"
+      check_status: "deployment.apps/kwasm-operator"
+      confinement: "classic"
+      supported_architectures:
+        - amd64
+        - arm64
+
+    - name: "gopaddle-lite"
+      description: "Cheapest, fastest and simplest way to modernize your applications"
+      version: "4.2.5"
+      check_status: "deployment.apps/gateway"
+      supported_architectures:
+        - amd64
+
+    - name: "ondat"
+      description: "Ondat is a software-defined, cloud native storage platform for Kubernetes."
+      version: "latest"
+      check_status: "deployment.apps/storageos-cli"
+      confinement: "classic"
+      supported_architectures:
+        - amd64
+
+    - name: "parking"
+      description: "Static webserver to park a domain. Works with EasyHAProxy."
+      version: "0.1.0"
+      check_status: "deployment.apps/parking-static-httpserver"
+      supported_architectures:
+        - amd64
+        - arm64
+
+    - name: "easyhaproxy"
+      description: "EasyHAProxy can configure HAProxy automatically based on ingress labels"
+      version: "0.1.5"
+      check_status: "pod/ingress-easyhaproxy"
+      supported_architectures:
+        - amd64
+        - arm64
+
+    - name: "shifu"
+      description: "Kubernetes native IoT software development framework."
+      version: "0.11.0"
+      check_status: "deployment.apps/shifu-crd-controller-manager"
+      supported_architectures:
+        - amd64
+        - arm64
